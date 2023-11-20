@@ -25,3 +25,4 @@ const Header = ({isConnected = false}) => {
 };
 
 export default Header;
+

@@ -1,14 +1,18 @@
-import React from 'react';
-import Home from "./pages/Home"
-import Header from "./components/Header";
+import React from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Connexion from "./pages/Connexion";
+import Home from "./pages/Home";
 
-function App() {
+const App = () => {
   return (
-    <div className="flex flex-col justify-center">
-      <Header />
-      <Home />
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/connexion" element={<Connexion />} />
+        <Route path="*" element={<Home />} />
+      </Routes>
+    </BrowserRouter>
   );
-}
+};
 
 export default App;

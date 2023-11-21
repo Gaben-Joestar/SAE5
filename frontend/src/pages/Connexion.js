@@ -16,7 +16,7 @@ const Connexion = () => {
             </label>
             <input
               id="email-pseudo"
-              className="rounded-2xl drop-shadow-md w-128 py-1"
+              className="rounded-2xl drop-shadow-md w-128 py-1 px-2"
               name="email-pseudo"
             ></input>
 
@@ -25,7 +25,7 @@ const Connexion = () => {
             </label>
             <input
               id="password"
-              className="rounded-2xl drop-shadow-md w-128 py-1"
+              className="rounded-2xl drop-shadow-md w-128 py-1 px-2"
               name="password"
             ></input>
           </div>

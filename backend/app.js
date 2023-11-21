@@ -16,7 +16,7 @@ main()
 
 
 async function recup_questions(db, theme){
-    const collection = db.collection(theme);
+    const collection = db.collection(quizz_site);
     try{
         const questions = await collection.findOne({libelle: theme});
     } catch(e){ throw e; }

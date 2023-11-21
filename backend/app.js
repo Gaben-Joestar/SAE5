@@ -7,7 +7,6 @@ function recup_questions(){
 
 }
 
-
 async function main(){
     await client.connect();
     const db = client.db('nomdb');

@@ -1,6 +1,7 @@
 import React from 'react';
 import Header from '../components/Header';
 import LargestButton from '../components/LargestButton';
+import { Link } from 'react-router-dom';
 
 const Connexion = () => {
   return (
@@ -44,7 +45,22 @@ const Connexion = () => {
         <div className="mt-5">
           <LargestButton text="Connexion" />
         </div>
-        <p>--------------------------- or ---------------------------</p>
+        <div className="flex items-center justify-between mt-4 text-light-grey text-xs">
+          <div className="h-px bg-light-grey mr-3 mt-1 w-56"></div>
+          or
+          <div className="h-px bg-light-grey ml-3 mt-1 w-56"></div>
+        </div>
+
+        <div className="flex items-center justify-between mt-4 w-60 text-light-grey text-xs">
+          <img src="./img/facebook-logo.png" className="w-10" />
+          <img src="./img/google-logo.png" className="w-10" />
+          <img src="./img/apple-logo.png" className="w-10" />
+        </div>
+        <Link to="/inscription" className="mt-5">
+          <p className="text-light-grey underline">
+            Pas de compte ? S’inscrire
+          </p>
+        </Link>
       </div>
     </div>
   );

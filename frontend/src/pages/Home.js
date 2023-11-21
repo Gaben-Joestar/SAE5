@@ -1,10 +1,10 @@
 import React from 'react';
-import Accueil from '../components/Accueil';
+import Inscription from '../components/Inscription';
 
 const Home = () => {
     return (
         <div>
-            <Accueil />
+            <Inscription />
         </div>
     );
 };

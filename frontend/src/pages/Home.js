@@ -1,10 +1,12 @@
 import React from 'react';
-import Inscription from '../components/Inscription';
+import Accueil from '../components/Accueil';
+import Header from '../components/Header';
 
 const Home = () => {
     return (
         <div>
-            <Inscription />
+            <Header />
+            <Accueil />
         </div>
     );
 };

@@ -10,17 +10,29 @@ async function main(){
     const db = client.db(nomdb);
 }
 
-main()
-    .catch(console.error)
-    .finally(()=> client.close());
+main().catch(console.error).finally(()=> client.close());
 
 
 async function recup_questions(db, theme){
-    const collection = db.collection(quizz_site);
+    const collection = db.collection('quizz_site');
     try{
-        const questions = await collection.findOne({libelle: theme});
+        const questions = await collection.findMany({libelle: theme});
     } catch(e){ throw e; }
 
-    return tojson(questions);
+    return questions;
 }
+
+async function ajouter_question(libelle, enonce, reponse, m_reponses){
+    const collection = db.collection('quizz_site');
+
+    try{
+        const insert = await collection.insertOne({
+            libelle: libelle,
+            enonce: enonce,
+            reponse: reponse,
+            mauvaise_reponse: m_reponses
+        })
+    } catch(e) { throw e }
+}
+
 

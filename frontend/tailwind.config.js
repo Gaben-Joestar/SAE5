@@ -10,6 +10,9 @@ module.exports = {
         144: '36rem',
       },
     },
+    letterSpacing: {
+      verywide: '.2em',
+    },
     colors: {
       grey: '#535353',
       white: '#ffffff',
@@ -19,6 +22,7 @@ module.exports = {
       brown: '#4E3131',
       black: '#000000',
       yellow: '#F2DF79',
+      red: '#DD5353',
     },
   },
   plugins: [],

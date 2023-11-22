@@ -67,3 +67,8 @@ h6 {
     font-size: 0.67em;
     font-weight: bold;
 }
+
+.custom-range {
+    background-color: #E7E7E7;
+    accent-color: #F2DF79;
+}

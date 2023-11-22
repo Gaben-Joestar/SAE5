@@ -52,9 +52,13 @@ const Connexion = () => {
         </div>
 
         <div className="flex items-center justify-between mt-4 w-60 text-light-grey text-xs">
-          <img src="./img/facebook-logo.png" className="w-10" />
-          <img src="./img/google-logo.png" className="w-10" />
-          <img src="./img/apple-logo.png" className="w-10" />
+          <img
+            src="./img/facebook-logo.png"
+            alt="logo-facebook"
+            className="w-10"
+          />
+          <img src="./img/google-logo.png" alt="logo-google" className="w-10" />
+          <img src="./img/apple-logo.png" alt="logo-apple" className="w-10" />
         </div>
         <Link to="/inscription" className="mt-5">
           <p className="text-light-grey underline">

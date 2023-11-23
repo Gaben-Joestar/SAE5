@@ -72,3 +72,11 @@ h6 {
     background-color: #E7E7E7;
     accent-color: #F2DF79;
 }
+
+.rounded-perso {
+    border-radius: 3rem;
+}
+
+.imageLoupe {
+    margin-top: -3rem;
+}

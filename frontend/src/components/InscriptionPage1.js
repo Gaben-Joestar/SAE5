@@ -5,11 +5,11 @@ const InscriptionPage1 = ({ onButtonClick }) => {
         <div className='flex flex-col align-middle ml-auto mr-auto' >
             <div className='flex flex-col items-baseline mt-12  gap-4'>
                 <div className='flex flex-col'>
-                    <label htmlFor="email" className='inter-semi-bold'>Email</label>
+                    <label htmlFor="email" className='inter-medium'>Email</label>
                     <input type="email" name="email" id="email" required className="rounded-2xl drop-shadow-md w-128 py-1 pl-3" />
                 </div>
                 <div className='flex flex-col'>
-                    <label htmlFor="pseudo" className='inter-semi-bold'>Pseudo</label>
+                    <label htmlFor="pseudo" className='inter-medium'>Pseudo</label>
                     <input type="text" name="pseudo" id="pseudo" required className="rounded-2xl drop-shadow-md w-128 py-1 pl-3" />
                 </div>
                 <div className='flex flex-col items-start'>

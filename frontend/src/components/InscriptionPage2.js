@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const InscriptionPage2 = () => {
+const InscriptionPage2 = ({ onButtonClick }) => {
     const [password, setPassword] = useState('');
     const [showPassword, setShowPassword] = useState(false);
     const [password2, setPassword2] = useState('');
@@ -48,8 +48,8 @@ const InscriptionPage2 = () => {
                 <div className='grow-0 mr-auto'>
                     <img src="./img/left-arrow.png" alt="retour" className='h-12 w-12' />
                 </div>
-                <div className='grow-0 ml-auto mt-auto mb-auto '>
-                    <button className="px-5 py-1.5 bg-grey rounded-3xl text-white" >Suivant</button>
+                <div className='grow-0 ml-auto mt-auto '>
+                    <button className="px-5 py-1.5 bg-grey rounded-3xl text-white" onClick={onButtonClick}>Suivant</button>
                 </div>
             </div>
 

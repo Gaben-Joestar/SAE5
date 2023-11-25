@@ -31,7 +31,7 @@ const InscriptionPage4 = () => {
                             </li>
                             <li className='flex flex-row gap-4'>
                                 <img src="./img/croix-rouge.png" alt="-" />
-                                <p className='inter-medium line-through text-grey'>Mode partie plus de 4 joueurs</p>
+                                <p className='inter-medium line-through text-grey'>Mode plus de 4 joueurs</p>
                             </li>
                             <li className='flex flex-row gap-4'>
                                 <img src="./img/croix-rouge.png" alt="-" />
@@ -69,7 +69,7 @@ const InscriptionPage4 = () => {
                             </li>
                             <li className='flex flex-row gap-4'>
                                 <img src="./img/coche-vert.png" alt="-" />
-                                <p className='inter-medium '>Mode partie plus de 4 joueurs</p>
+                                <p className='inter-medium '>Mode plus de 4 joueurs</p>
                             </li>
                             <li className='flex flex-row gap-4'>
                                 <img src="./img/coche-vert.png" alt="-" />

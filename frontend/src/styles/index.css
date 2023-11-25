@@ -75,8 +75,35 @@ h6 {
 
 .rounded-perso {
     border-radius: 3rem;
+    -webkit-border-radius: 3rem;
+    -moz-border-radius: 3rem;
 }
 
 .imageLoupe {
     margin-top: -3rem;
+}
+
+.progress-bar {
+    position: relative;
+    width: 20vw;
+    height: 1rem;
+    background-color: #f7f7f7;
+    border-radius: 1.5em;
+    color: white;
+}
+
+.progress-bar::before {
+    content: '';
+    display: flex;
+    align-items: center;
+    position: absolute;
+
+
+    width: 30%;
+    min-width: 2rem;
+    max-width: 101%;
+    background-color: #F2DF79;
+    border-radius: 1em;
+    left: -.5%;
+    padding: .5em;
 }

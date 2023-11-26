@@ -12,11 +12,14 @@ const Inscription = () => {
     const [afficherPage3, setAfficherPage3] = useState(false);
     const [afficherPage4, setAfficherPage4] = useState(false);
 
+    const [percentage, setPercentage] = useState(20);
+
     const buttonClicked1 = () => {
         setAfficherPage1(false);
         setAfficherPage2(true);
         setAfficherPage3(false);
         setAfficherPage4(false);
+        setPercentage(50);
     }
 
     const buttonClicked2 = () => {
@@ -24,6 +27,7 @@ const Inscription = () => {
         setAfficherPage2(false);
         setAfficherPage3(true);
         setAfficherPage4(false);
+        setPercentage(80);
     }
     const buttonClicked3 = () => {
         setAfficherPage1(false);
@@ -35,7 +39,7 @@ const Inscription = () => {
     return (
         <div className='flex flex-col'>
             <Header />
-            {!afficherPage4 && <InscriptionEnTete />}
+            {!afficherPage4 && <InscriptionEnTete percentage={percentage} />}
             {afficherPage1 && <InscriptionPage1 onButtonClick={buttonClicked1} />}
             {afficherPage2 && <InscriptionPage2 onButtonClick={buttonClicked2} />}
             {afficherPage3 && <InscriptionPage3 onButtonClick={buttonClicked3} />}

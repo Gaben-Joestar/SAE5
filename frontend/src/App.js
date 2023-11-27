@@ -5,6 +5,7 @@ import Home from './pages/Home';
 import Inscription from './pages/Inscription';
 import Partie from './pages/Partie';
 import Rejoindre from './pages/Rejoindre';
+import ChoixMode from './pages/ChoixMode';
 
 const App = () => {
   return (
@@ -15,6 +16,8 @@ const App = () => {
         <Route path='/partie' element={<Partie />} />
         <Route path='/inscription' element={<Inscription />} />
         <Route path='/rejoindre' element={<Rejoindre />} />
+        <Route path='/choix-mode' element={<ChoixMode />} />
+
         <Route path='*' element={<Home />} />
       </Routes>
     </BrowserRouter>

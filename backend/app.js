@@ -1,35 +1,59 @@
-const URL = url;
+// Définition des constantes
+const URL = 'mongodb://bdd_user:Pm75319aW99%26*@10.1.138.47:27017/?authMechanism=DEFAULT';
+const nomdb = 'quizz';
 
-const nomdb = 'loupepastonquizz';
-
+// Mise en place du lien avec la BDD
 const { MongoClient } = require ('mongodb');
 const client = new MongoClient(URL);
 
-const bcrypt = require('bcryptjs');
+// Mise en place du hash pour le stockage des mdp
+// const bcrypt = require('bcryptjs');
+
 
 async function main(){
     await client.connect();
-    const db = client.db(nomdb);
+    const db = client.db('quizz');
+    /*
+    const collection = db.collection('Messagerie');
+    const inserts = await collection.insertOne({message : 'miaou'});
+    console.log(`Document inséré => ${inserts}`);
+    */
+   console.log(`Nouvel avis => ${nouvel_avis(db, 1, 'pas mal, j\'ai bien aimé', 8, 'bob' )}`);
+    return 'done';
 }
 
-main().catch(console.error).finally(()=> client.close());
+
+main().then(console.log).catch(console.error).finally(()=> client.close());
 
 
-async function recup_questions(db, theme){
-    const collection = db.collection('quizz_site');
+async function recup_questions(db, titre){
+    const collection = db.collection('Quizz');
     try{
-        const questions = await collection.findMany({libelle: theme});
+        const questions = await collection.findMany({titre_quizz: titre});
     } catch(e){ throw e; }
 
     return questions;
 }
 
-async function ajouter_question(libelle, enonce, reponse, m_reponses){
+async function nouvel_avis(db, idquizz, commentaire, noteattribuée, idauteur){
+    const collection = db.collection('Avis');
+
+    try{
+        const insertavis = await collection.insertOne({
+            id_quizz: idquizz,
+            id_auteur: idauteur,
+            texte: commentaire,
+            note: noteattribuée
+        })
+    } catch(e) { throw e }
+}
+
+async function ajouter_question(titre, enonce, reponse, m_reponses){
     const collection = db.collection('quizz_site');
 
     try{
         const insert = await collection.insertOne({
-            libelle: libelle,
+            titre_quizz: titre,
             enonce: enonce,
             reponse: reponse,
             mauvaise_reponse: m_reponses
@@ -52,6 +76,8 @@ async function creer_compte(email, pseudo, date_naissance, mdp){
 
 
 // Utiliser sous condition que code bon
+
+/*
 async function reset_mdp(email, mdp){
     const collection = db.collection('utilisateurs');
 
@@ -61,3 +87,4 @@ async function reset_mdp(email, mdp){
         });
     } catch (e) { throw e }
 }
+*/

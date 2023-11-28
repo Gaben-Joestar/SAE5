@@ -81,7 +81,9 @@ const InscriptionPage4 = () => {
                             </li>
                         </ul>
                         <div className='flex flex-col align-middle mb-10'>
-                            <button className="px-5 py-1.5 bg-yellow rounded-3xl text-white  ml-5 mr-5">Choisir</button>
+                            <a href="/paiement" className='flex flex-col align-middle'>
+                                <button className="px-5 py-1.5 bg-yellow rounded-3xl text-white  ml-5 mr-5">Choisir</button>
+                            </a>
                         </div>
                     </div>
                 </div>

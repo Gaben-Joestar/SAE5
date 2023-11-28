@@ -4,6 +4,7 @@ import Connexion from './pages/Connexion';
 import Home from './pages/Home';
 import Inscription from './pages/Inscription';
 import Partie from './pages/Partie';
+import Paiement from './pages/Paiement';
 
 const App = () => {
   return (
@@ -13,6 +14,7 @@ const App = () => {
         <Route path='/connexion' element={<Connexion />} />
         <Route path='/partie' element={<Partie />} />
         <Route path='/inscription' element={<Inscription />} />
+        <Route path='/paiement' element={<Paiement />} />
         <Route path='*' element={<Home />} />
       </Routes>
     </BrowserRouter>

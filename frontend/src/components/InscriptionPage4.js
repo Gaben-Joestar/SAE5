@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const InscriptionPage4 = () => {
     return (
@@ -81,9 +82,9 @@ const InscriptionPage4 = () => {
                             </li>
                         </ul>
                         <div className='flex flex-col align-middle mb-10'>
-                            <a href="/paiement" className='flex flex-col align-middle'>
+                            <Link to="/paiement" className='flex flex-col align-middle'>
                                 <button className="px-5 py-1.5 bg-yellow rounded-3xl text-white  ml-5 mr-5">Choisir</button>
-                            </a>
+                            </Link>
                         </div>
                     </div>
                 </div>

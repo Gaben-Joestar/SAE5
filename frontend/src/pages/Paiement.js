@@ -15,19 +15,19 @@ const Paiement = () => {
                     <div className='flex flex-row align-middle justify-center gap-24'>
                         <div className='flex flex-col gap-2'>
                             <h3 className='ml-auto mr-auto inter-semi-bold mb-3'>Informations Personnelles</h3>
-                            <div className='flex flex-col'>
+                            <div className='flex flex-col gap-1'>
                                 <label htmlFor="nom" className='inter-medium pl-3'>Nom :</label>
                                 <input type="text" name="nom" id="nom" className="rounded-2xl drop-shadow-lg w-128 py-1 pl-3" />
                             </div>
-                            <div className='flex flex-col'>
+                            <div className='flex flex-col gap-1'>
                                 <label htmlFor="prenom" className='inter-medium pl-3'>Prénom :</label>
                                 <input type="text" name="prenom" id="prenom" className="rounded-2xl drop-shadow-lg w-128 py-1 pl-3" />
                             </div>
-                            <div className='flex flex-col'>
+                            <div className='flex flex-col gap-1'>
                                 <label htmlFor="email" className='inter-medium pl-3'>Adresse Mail :</label>
                                 <input type="email" name="email" id="email" className="rounded-2xl drop-shadow-lg w-128 py-1 pl-3" />
                             </div>
-                            <div className='flex flex-col'>
+                            <div className='flex flex-col gap-1'>
                                 <label htmlFor="numeroTelephone" className='inter-medium pl-3'>Numéro de Téléphone :</label>
                                 <input type="tel" name="numeroTelephone" id="numeroTelephone" className="rounded-2xl drop-shadow-lg w-128 py-1 pl-3" />
                             </div>
@@ -35,19 +35,19 @@ const Paiement = () => {
 
                         <div className='flex flex-col gap-2'>
                             <h3 className='ml-auto mr-auto inter-semi-bold mb-3' >Adresse de facturation</h3>
-                            <div className='flex flex-col'>
+                            <div className='flex flex-col gap-1'>
                                 <label htmlFor="adresse" className='inter-medium pl-3'>Adresse :</label>
                                 <input type="text" name="adresse" id="adresse" className="rounded-2xl drop-shadow-lg w-128 py-1 pl-3" />
                             </div>
-                            <div className='flex flex-col'>
+                            <div className='flex flex-col gap-1'>
                                 <label htmlFor="ville" className='inter-medium pl-3'>Ville :</label>
                                 <input type="text" name="Ville" id="Ville" className="rounded-2xl drop-shadow-lg w-128 py-1 pl-3" />
                             </div>
-                            <div className='flex flex-col'>
+                            <div className='flex flex-col gap-1'>
                                 <label htmlFor="codePostal" className='inter-medium pl-3'>Code Postal :</label>
                                 <input type="number" name="codePostal" id="codePostal" className="rounded-2xl drop-shadow-lg w-128 py-1 pl-3" />
                             </div>
-                            <div className='flex flex-col'>
+                            <div className='flex flex-col gap-1'>
                                 <label htmlFor="codePostal" className='inter-medium pl-3'>Pays :</label>
                                 <input type="text" name="pays" id="pays" className="rounded-2xl drop-shadow-lg w-128 py-1 pl-3" />
                             </div>

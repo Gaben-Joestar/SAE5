@@ -3,8 +3,8 @@ import React from 'react';
 const ChoixTheme = ({ text, bg_color }) => {
   var classNameDiv =
     bg_color === 'cyan'
-      ? `w-144 h-36 bg-cyan text-white rounded-2xl text-5xl font-bold flex flex-row hover:cursor-pointer`
-      : `w-144 h-36 bg-grey-brown text-white rounded-2xl text-5xl font-bold flex flex-row hover:cursor-pointer`;
+      ? 'w-144 h-36 bg-cyan text-white rounded-2xl text-5xl font-bold flex flex-row hover:cursor-pointer'
+      : 'w-144 h-36 bg-grey-brown text-white rounded-2xl text-5xl font-bold flex flex-row hover:cursor-pointer';
 
   return (
     <div className={classNameDiv}>

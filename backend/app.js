@@ -48,7 +48,20 @@ async function nouvel_avis(db, idquizz, commentaire, noteattribuée, idauteur){
     } catch(e) { throw e }
 }
 
-async function ajouter_question(titre, enonce, reponse, m_reponses){
+async function ajouter_question_standard(theme, enonce, reponse, m_reponses){
+    const collection = db.collection('quizz_site');
+
+    const question = [enonce, reponse, m_reponses];
+
+    try{
+        const insert = await collection.insertOne({
+            titre_quizz: theme,
+            questions[standard]: question
+        })
+    } catch(e) { throw e }
+}
+
+async function ajouter_question_carte(titre, enonce, reponse, m_reponses){
     const collection = db.collection('quizz_site');
 
     try{
@@ -61,6 +74,31 @@ async function ajouter_question(titre, enonce, reponse, m_reponses){
     } catch(e) { throw e }
 }
 
+async function ajouter_question_intru(titre, enonce, reponse, m_reponses){
+    const collection = db.collection('quizz_site');
+
+    try{
+        const insert = await collection.insertOne({
+            titre_quizz: titre,
+            enonce: enonce,
+            reponse: reponse,
+            mauvaise_reponse: m_reponses
+        })
+    } catch(e) { throw e }
+}
+
+async function ajouter_question_pendu(titre, enonce, reponse, m_reponses){
+    const collection = db.collection('quizz_site');
+
+    try{
+        const insert = await collection.insertOne({
+            titre_quizz: titre,
+            enonce: enonce,
+            reponse: reponse,
+            mauvaise_reponse: m_reponses
+        })
+    } catch(e) { throw e }
+}
 async function creer_compte(email, pseudo, date_naissance, mdp){
     const collection = db.collection('utilisateurs');
 

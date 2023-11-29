@@ -26,14 +26,22 @@ async function main(){
 main().then(console.log).catch(console.error).finally(()=> client.close());
 
 
-async function recup_questions(db, titre){
+// FONCTIONS EN LIENS AVEC LA BDD
+
+
+// Fonction de collecte des questions d'un theme
+
+async function recup_questions(db, theme){
     const collection = db.collection('Quizz');
     try{
-        const questions = await collection.findMany({titre_quizz: titre});
+        const questions = await collection.findMany({titre_quizz: theme});
     } catch(e){ throw e; }
 
     return questions;
 }
+
+
+// Fonction d'ajout d'avis
 
 async function nouvel_avis(db, idquizz, commentaire, noteattribuée, idauteur){
     const collection = db.collection('Avis');
@@ -49,8 +57,7 @@ async function nouvel_avis(db, idquizz, commentaire, noteattribuée, idauteur){
 }
 
 
-// Fonction d'ajout de questions
-/// Manque le push pour insérer les questions
+// Fonctions d'ajout de questions
 
 async function ajouter_question_standard(db, theme, enonce, breponse, m_reponses){
     const collection = db.collection('Quizz');

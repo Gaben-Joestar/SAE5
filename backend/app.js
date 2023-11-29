@@ -48,58 +48,89 @@ async function nouvel_avis(db, idquizz, commentaire, noteattribuée, idauteur){
     } catch(e) { throw e }
 }
 
-async function ajouter_question_standard(theme, enonce, reponse, m_reponses){
-    const collection = db.collection('quizz_site');
 
-    const question = [enonce, reponse, m_reponses];
+// Fonction d'ajout de questions
+/// Manque le push pour insérer les questions
+
+async function ajouter_question_standard(db, theme, enonce, breponse, m_reponses){
+    const collection = db.collection('Quizz');
 
     try{
-        const insert = await collection.insertOne({
-            titre_quizz: theme,
-            questions[standard]: question
-        })
+        questions = await collection.findMany({titre_quizz: theme});
     } catch(e) { throw e }
+
+    if (theme in questions){
+        try{
+            const update = await collection.updateOne({titre_quizz: theme},{
+                "$push":
+                {"questions.$[].standard":{
+                    "enonce": enonce,
+                    "reponse": breponse,
+                    "mauvaises_rep": m_reponses
+                }
+            }
+            })
+        } catch(e) { throw e }
+    }else{
+        try{
+            const insert = await collection.insertOne({
+                titre_quizz: theme
+            })
+            const update = await collection.updateOne({titre_quizz: theme},{
+                "$push":
+                {"questions.$[].standard":{
+                    "enonce": enonce,
+                    "reponse": breponse,
+                    "mauvaises_rep": m_reponses
+                }}
+            })
+        } catch(e) { throw e }
+    }
+
+    
 }
 
-async function ajouter_question_carte(titre, enonce, reponse, m_reponses){
+async function ajouter_question_carte(db, titre, enonce, coordonnees){
     const collection = db.collection('quizz_site');
+
+    const question = [enonce, coordonnees];
 
     try{
         const insert = await collection.insertOne({
             titre_quizz: titre,
-            enonce: enonce,
-            reponse: reponse,
-            mauvaise_reponse: m_reponses
+            questions: question // Carte
         })
     } catch(e) { throw e }
 }
 
-async function ajouter_question_intru(titre, enonce, reponse, m_reponses){
+async function ajouter_question_intru(db, titre, reponse, m_reponses, indice){
     const collection = db.collection('quizz_site');
+
+    const question = [reponse, m_reponses, indice]
 
     try{
         const insert = await collection.insertOne({
             titre_quizz: titre,
-            enonce: enonce,
-            reponse: reponse,
-            mauvaise_reponse: m_reponses
+            questions: question // Intru
+
         })
     } catch(e) { throw e }
 }
 
-async function ajouter_question_pendu(titre, enonce, reponse, m_reponses){
+async function ajouter_question_pendu(db, titre, enonce, reponse){
     const collection = db.collection('quizz_site');
 
+    const question = [enonce, reponse]
     try{
         const insert = await collection.insertOne({
             titre_quizz: titre,
-            enonce: enonce,
-            reponse: reponse,
-            mauvaise_reponse: m_reponses
+            questions: question // Pendu
         })
     } catch(e) { throw e }
 }
-async function creer_compte(email, pseudo, date_naissance, mdp){
+
+
+async function creer_compte(db, email, pseudo, date_naissance, mdp){
     const collection = db.collection('utilisateurs');
 
     try{
@@ -116,7 +147,7 @@ async function creer_compte(email, pseudo, date_naissance, mdp){
 // Utiliser sous condition que code bon
 
 /*
-async function reset_mdp(email, mdp){
+async function reset_mdp(db, email, mdp){
     const collection = db.collection('utilisateurs');
 
     try{

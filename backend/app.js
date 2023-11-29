@@ -86,47 +86,112 @@ async function ajouter_question_standard(db, theme, enonce, breponse, m_reponses
             })
         } catch(e) { throw e }
     }
-
-    
 }
 
-async function ajouter_question_carte(db, titre, enonce, coordonnees){
+async function ajouter_question_carte(db, theme, enonce, coordonnees){
     const collection = db.collection('quizz_site');
 
-    const question = [enonce, coordonnees];
-
     try{
-        const insert = await collection.insertOne({
-            titre_quizz: titre,
-            questions: question // Carte
-        })
+        questions = await collection.findMany({titre_quizz: theme});
     } catch(e) { throw e }
+
+    if (theme in questions){
+        try{
+            const update = await collection.updateOne({titre_quizz: theme},{
+                "$push":
+                {"questions.$[].carte":{
+                    "enonce": enonce,
+                    "coordonnees": coordonnees
+                }
+            }
+            })
+        } catch(e) { throw e }
+    }else{
+        try{
+            const insert = await collection.insertOne({
+                titre_quizz: theme
+            })
+            const update = await collection.updateOne({titre_quizz: theme},{
+                "$push":
+                {"questions.$[].carte":{
+                    "enonce": enonce,
+                    "coordonnees": coordonnees
+                }}
+            })
+        } catch(e) { throw e }
+    }
 }
 
-async function ajouter_question_intru(db, titre, reponse, m_reponses, indice){
+async function ajouter_question_intru(db, theme, breponse, m_reponses, indice){
     const collection = db.collection('quizz_site');
 
-    const question = [reponse, m_reponses, indice]
-
     try{
-        const insert = await collection.insertOne({
-            titre_quizz: titre,
-            questions: question // Intru
-
-        })
+        questions = await collection.findMany({titre_quizz: theme});
     } catch(e) { throw e }
+
+    if (theme in questions){
+        try{
+            const update = await collection.updateOne({titre_quizz: theme},{
+                "$push":
+                {"questions.$[].intru":{
+                    "reponse": breponse,
+                    "mauvaises_rep": m_reponses,
+                    "indice": indice
+                }
+            }
+            })
+        } catch(e) { throw e }
+    }else{
+        try{
+            const insert = await collection.insertOne({
+                titre_quizz: theme
+            })
+            const update = await collection.updateOne({titre_quizz: theme},{
+                "$push":
+                {"questions.$[].intru":{
+                    "reponse": breponse,
+                    "mauvaises_rep": m_reponses,
+                    "indice": indice
+                }}
+            })
+        } catch(e) { throw e }
+    }
 }
 
-async function ajouter_question_pendu(db, titre, enonce, reponse){
+async function ajouter_question_pendu(db, theme, enonce, reponse){
     const collection = db.collection('quizz_site');
 
     const question = [enonce, reponse]
+    
     try{
-        const insert = await collection.insertOne({
-            titre_quizz: titre,
-            questions: question // Pendu
-        })
+        questions = await collection.findMany({titre_quizz: theme});
     } catch(e) { throw e }
+
+    if (theme in questions){
+        try{
+            const update = await collection.updateOne({titre_quizz: theme},{
+                "$push":
+                {"questions.$[].pendu":{
+                    "enonce": enonce,
+                    "reponse": reponse
+                }
+            }
+            })
+        } catch(e) { throw e }
+    }else{
+        try{
+            const insert = await collection.insertOne({
+                titre_quizz: theme
+            })
+            const update = await collection.updateOne({titre_quizz: theme},{
+                "$push":
+                {"questions.$[].pendu":{
+                    "enonce": enonce,
+                    "reponse": reponse
+                }}
+            })
+        } catch(e) { throw e }
+    }
 }
 
 

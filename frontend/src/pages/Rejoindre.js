@@ -31,7 +31,7 @@ const Rejoindre = () => {
         <div className='text-2xl mt-28'>
           <button
             className='px-5 py-1.5 bg-grey rounded-3xl text-white'
-            onClick={() => setExist(!exist)}
+            onClick={() => setExist(false)}
           >
             Rejoindre
           </button>

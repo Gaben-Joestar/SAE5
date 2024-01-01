@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const InscriptionPage2 = ({ onButtonClick }) => {
+const InscriptionPage2 = ({ onButtonClick, onReturnClick }) => {
     const [password, setPassword] = useState('');
     const [showPassword, setShowPassword] = useState(false);
     const [password2, setPassword2] = useState('');
@@ -46,7 +46,7 @@ const InscriptionPage2 = ({ onButtonClick }) => {
             </div>
             <div className='flex flex-row justify-center align-middle mt-2'>
                 <div className='grow-0 mr-auto'>
-                    <img src="./img/left-arrow.png" alt="retour" className='h-12 w-12' />
+                    <img src="./img/left-arrow.png" alt="retour" className='h-12 w-12' onClick={onReturnClick} />
                 </div>
                 <div className='grow-0 ml-auto mt-auto '>
                     <button className="px-5 py-1.5 bg-grey rounded-3xl text-white" onClick={onButtonClick}>Suivant</button>

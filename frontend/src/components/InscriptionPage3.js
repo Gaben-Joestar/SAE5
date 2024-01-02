@@ -1,6 +1,6 @@
 import React from 'react';
 
-const InscriptionPage3 = ({ onButtonClick }) => {
+const InscriptionPage3 = ({ onButtonClick, onReturnClick }) => {
     return (
         <div className='flex flex-col align-middle ml-auto mr-auto mt-8'>
             <div className='flex flex-row align-middle gap-32 '>
@@ -18,7 +18,7 @@ const InscriptionPage3 = ({ onButtonClick }) => {
             </div>
             <div className='flex flex-row justify-center align-middle mt-2'>
                 <div className='grow-0 mr-auto'>
-                    <img src="./img/left-arrow.png" alt="retour" className='h-12 w-12' />
+                    <img src="./img/left-arrow.png" alt="retour" className='h-12 w-12' onClick={onReturnClick} />
                 </div>
                 <div className='grow-0 ml-auto mt-auto '>
                     <button className="px-5 py-1.5 bg-grey rounded-3xl text-white" onClick={onButtonClick}>Suivant</button>

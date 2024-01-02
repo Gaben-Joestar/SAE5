@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 const Header = ({ isConnected = false }) => {
   return (
-    <div className="flex justify-between items-center my-3 inter-semi-bold">
+    <div className="flex justify-between items-center my-3 inter-semi-bold ">
       <div className="flex items-center text-grey">
         <Link to="/"><img src="./img/petit-logo.PNG" alt="Petit logo" className="mr-4 ml-4 w-21 h-16" /></Link>
         <Link to="/rejoindre" className="ml-20">Rejoindre</Link>

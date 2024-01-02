@@ -1,8 +1,16 @@
 import React from 'react';
+import { cn } from '../lib/utils';
 
-const Button = ({ text }) => {
+const Button = ({ text, isActive = true, className }) => {
   return (
-    <button className="px-5 py-1.5 bg-grey rounded-3xl text-white">
+    <button
+      className={cn(
+        `px-5 py-1.5 ${
+          isActive ? 'bg-grey' : 'bg-light-grey'
+        } rounded-3xl text-white hover:shadow-md`,
+        className,
+      )}
+    >
       {text}
     </button>
   );

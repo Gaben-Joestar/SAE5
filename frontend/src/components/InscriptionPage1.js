@@ -28,7 +28,6 @@ const InscriptionPage1 = ({ onButtonClick }) => {
     }
 
     const handlePseudoBlur = () => {
-        // Ajoutez votre logique de validation pour le pseudo ici
         if (pseudo.length < 3) {
             setPseudoError('Le pseudo doit contenir au moins 3 caractères');
         } else {
@@ -41,8 +40,6 @@ const InscriptionPage1 = ({ onButtonClick }) => {
     }
 
     const handleDateNaissanceBlur = () => {
-        // Ajoutez votre logique de validation pour la date de naissance ici
-        // Par exemple, vérifier si la date est dans un format spécifique, etc.
         if (!dateNaissance) {
             setDateNaissanceError('Veuillez entrer une date de naissance');
         } else {
@@ -50,7 +47,7 @@ const InscriptionPage1 = ({ onButtonClick }) => {
         }
     }
 
-    const isNextButtonDisabled = !!emailError || !!pseudoError || !!dateNaissanceError || !email || !pseudo || !dateNaissance;
+    const isNextButtonDisabled = emailError || pseudoError || dateNaissanceError || !email || !pseudo || !dateNaissance;
 
 
     return (

@@ -20,9 +20,24 @@ const InscriptionPage1 = ({ onButtonClick, onEmailRecup, onPseudoRecup, onDateNa
         if (!emailPattern.test(email)) {
             setEmailError('Adresse email invalide');
         } else {
-            setEmailError('');
+            verifierExistenceCompte(email);
         }
     }
+
+    const verifierExistenceCompte = async (email) => {
+        try {
+            const response = await fetch(`http://localhost:3000/user/recuperer/${encodeURIComponent(email)}`);
+
+            if (response.ok) {
+                setEmailError('Il existe déjà un compte utilisant cette adresse mail');
+            } else {
+                setEmailError('');
+            }
+        } catch (error) {
+            setEmailError("Erreur lors de la vérification de l'adresse mail. Veuillez réessayer plus tard.");
+        }
+    };
+
 
     const handlePseudoChange = (e) => {
         setPseudo(e.target.value);

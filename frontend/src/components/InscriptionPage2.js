@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const InscriptionPage2 = ({ onButtonClick, onReturnClick }) => {
+const InscriptionPage2 = ({ onButtonClick, onReturnClick, onPasswordRecup }) => {
     const [password, setPassword] = useState('');
     const [showPassword, setShowPassword] = useState(false);
     const [password2, setPassword2] = useState('');
@@ -8,6 +8,11 @@ const InscriptionPage2 = ({ onButtonClick, onReturnClick }) => {
 
     const [passwordError, setPasswordError] = useState('');
     const [passwordError2, setPasswordError2] = useState('');
+
+    const handlePasswordChange = (e) => {
+        setPassword(e.target.value);
+        onPasswordRecup(e.target.value);
+    }
 
     const togglePasswordVisibility = () => {
         setShowPassword(!showPassword);
@@ -45,7 +50,7 @@ const InscriptionPage2 = ({ onButtonClick, onReturnClick }) => {
                     <input
                         type={showPassword ? 'text' : 'password'}
                         value={password}
-                        onChange={(e) => setPassword(e.target.value)}
+                        onChange={handlePasswordChange}
                         onBlur={(e) => {
                             handlePasswordBlur();
                             handlePasswordBlur2();

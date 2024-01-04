@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const InscriptionPage1 = ({ onButtonClick }) => {
+const InscriptionPage1 = ({ onButtonClick, onEmailRecup, onPseudoRecup, onDateNaissanceRecup }) => {
     const [email, setEmail] = useState('');
     const [pseudo, setPseudo] = useState('');
     const [dateNaissance, setDateNaissance] = useState('');
@@ -11,6 +11,7 @@ const InscriptionPage1 = ({ onButtonClick }) => {
 
     const handleEmailChange = (e) => {
         setEmail(e.target.value);
+        onEmailRecup(e.target.value);
     }
 
     const handleEmailBlur = () => {
@@ -25,6 +26,7 @@ const InscriptionPage1 = ({ onButtonClick }) => {
 
     const handlePseudoChange = (e) => {
         setPseudo(e.target.value);
+        onPseudoRecup(e.target.value);
     }
 
     const handlePseudoBlur = () => {
@@ -37,6 +39,7 @@ const InscriptionPage1 = ({ onButtonClick }) => {
 
     const handleDateNaissanceChange = (e) => {
         setDateNaissance(e.target.value);
+        onDateNaissanceRecup(e.target.value);
     }
 
     const handleDateNaissanceBlur = () => {

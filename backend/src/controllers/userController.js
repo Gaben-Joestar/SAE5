@@ -1,10 +1,20 @@
 const bcrypt = require('bcryptjs');
 
+// Créer un utilisateur dans la base 
+
 const creerUtilisateur = async (req, res) => {
     const { email, pseudo, date_naissance, mdp } = req.body;
     const collection = req.db.collection('utilisateurs');
 
+    // Vérification que l'email rentré n'est pas déjà attribué à un autre utilisateur
     try {
+        const existingUser = await collection.findOne({ mail: email });
+
+        if (existingUser) {
+            return res.status(400).json({ success: false, message: 'Un utilisateur avec cette adresse e-mail existe déjà.' });
+        }
+
+        // Création de l'utilisateur 
         const insert = await collection.insertOne({
             mail: email,
             pseudo: pseudo,
@@ -19,12 +29,15 @@ const creerUtilisateur = async (req, res) => {
     }
 };
 
+
+// Récupérer un utilisateur dans la base grâce à son adresse mail
+
 const recupererUtilisateur = async (req, res) => {
-    const userId = req.params.id;
+    const userEmail = req.params.email;
     const collection = req.db.collection('utilisateurs');
 
     try {
-        const utilisateur = await collection.findOne({ _id: userId });
+        const utilisateur = await collection.findOne({ mail: userEmail });
 
         if (utilisateur) {
             res.status(200).json({ success: true, utilisateur });

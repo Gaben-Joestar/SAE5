@@ -1,4 +1,5 @@
 const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
 
 // Créer un utilisateur dans la base 
 
@@ -50,7 +51,12 @@ const recupererUtilisateur = async (req, res) => {
     }
 };
 
+const connexionUtilisateur = async (req, res) => {
+
+}
+
 module.exports = {
     creerUtilisateur,
     recupererUtilisateur,
+    connexionUtilisateur,
 };

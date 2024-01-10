@@ -9,7 +9,7 @@ const Header = ({ isConnected = false }) => {
         <Link to="/"><img src="./img/petit-logo.PNG" alt="Petit logo" className="mr-4 ml-4 w-21 h-16" /></Link>
         <Link to="/rejoindre" className="ml-20">Rejoindre</Link>
         <Link to="/prix" className="ml-20">Prix</Link>
-        <Link to="/a-propos" className="ml-20">A propos</Link>
+        <Link to="/ajout-question" className="ml-20">Proposer une Question</Link>
       </div>
       {!isConnected ? (
         <div className="flex items-center mr-8">

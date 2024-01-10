@@ -20,9 +20,9 @@ const AjoutQuestion = () => {
                             <label htmlFor="theme" className='mt-auto mb-auto'>Thème :</label>
                             <select name="theme" required id="theme">
                                 <option value="" disabled selected className='hidden'>Choisir un thème</option>
-                                <option value="element1">element1</option>
-                                <option value="element2">element2</option>
-                                <option value="element3">element3</option>
+                                <option value="element1">Thème 1</option>
+                                <option value="element2">Thème 2</option>
+                                <option value="element3">Thème 3</option>
                             </select>
                         </div>
                     </div>

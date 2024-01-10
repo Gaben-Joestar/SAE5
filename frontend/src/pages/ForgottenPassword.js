@@ -4,6 +4,7 @@ import Button from '../components/Button';
 
 const ForgottenPassword = () => {
   const [email, setEmail] = useState('');
+  const [emailError, setEmailError] = useState('');
   const [isValid, setIsValid] = useState(false);
   const [isActive, setIsActive] = useState(false);
   const [exist, setExist] = useState(true);
@@ -23,6 +24,20 @@ const ForgottenPassword = () => {
     setEmail(inputValue);
     setIsValid(validateEmail(inputValue));
   };
+
+  const handleInputBlur = async () => {
+    try {
+      const response = await fetch(`http://localhost:3000/user/recuperer/${encodeURIComponent(email)}`);
+
+      if (response.ok) {
+        setEmailError('');
+      } else {
+        setEmailError("Il n'existe aucun compte lié à cette adresse mail");
+      }
+    } catch (error) {
+      setEmailError("Erreur lors de la vérification de l'adresse mail. Veuillez réessayer plus tard.");
+    }
+  }
 
   const sendEmail = () => {
     if (isValid) {
@@ -93,7 +108,9 @@ const ForgottenPassword = () => {
               className='rounded-2xl drop-shadow-md w-128 py-1 px-2 mt-6 mb-16 pl-2'
               ref={myInput}
               onChange={handleInputChange}
+              onBlur={handleInputBlur}
             ></input>
+            {emailError && <p className=" text-red pl-3">{emailError}</p>}
             <div onClick={sendEmail}>
               <Button text={'Envoyer code'} isActive={isValid} />
             </div>
@@ -118,9 +135,8 @@ const ForgottenPassword = () => {
             )}
             <div className={exist ? 'mt-20' : 'mt-9'}>
               <button
-                className={`px-16 py-1.5 ${
-                  isActive ? 'bg-grey' : 'bg-light-grey'
-                } rounded-3xl text-white hover:shadow-md`}
+                className={`px-16 py-1.5 ${isActive ? 'bg-grey' : 'bg-light-grey'
+                  } rounded-3xl text-white hover:shadow-md`}
                 onClick={validerCode}
               >
                 Vérifier
@@ -148,9 +164,8 @@ const ForgottenPassword = () => {
                   name='password'
                   id='password'
                   required
-                  className={`rounded-2xl drop-shadow-md w-128 py-1 pl-3 text-xl ${
-                    !validPassword1 && 'text-red'
-                  }`}
+                  className={`rounded-2xl drop-shadow-md w-128 py-1 pl-3 text-xl ${!validPassword1 && 'text-red'
+                    }`}
                 />
                 <div className='flex flex-row gap-1 pl-4 mt-1'>
                   <input
@@ -177,9 +192,8 @@ const ForgottenPassword = () => {
                   name='passwordConfirm'
                   id='passwordConfirm'
                   required
-                  className={`rounded-2xl drop-shadow-md w-128 py-1 pl-3 text-xl ${
-                    !validPassword2 && 'text-red'
-                  }`}
+                  className={`rounded-2xl drop-shadow-md w-128 py-1 pl-3 text-xl ${!validPassword2 && 'text-red'
+                    }`}
                 />
                 <div className='flex flex-row gap-1 pl-4 mt-1'>
                   <input

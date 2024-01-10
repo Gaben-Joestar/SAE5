@@ -1,9 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Header from '../components/Header';
 import LargestButton from '../components/LargestButton';
 import { Link } from 'react-router-dom';
 
 const Connexion = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value);
+  }
+
+  const handlePasswordChange = (e) => {
+    setPassword(e.target.value);
+  }
+
+  const handleConnexion = () => {
+
+  }
+
   return (
     <div>
       <Header />
@@ -18,6 +33,7 @@ const Connexion = () => {
               id="email-pseudo"
               className="rounded-2xl drop-shadow-md w-128 py-1 px-2"
               name="email-pseudo"
+              onChange={handleEmailChange}
             ></input>
 
             <label htmlFor="connexion" className="block mb-1 mt-4">
@@ -27,6 +43,7 @@ const Connexion = () => {
               id="password"
               className="rounded-2xl drop-shadow-md w-128 py-1 px-2"
               name="password"
+              onChange={handlePasswordChange}
             ></input>
           </div>
           <div className="flex items-center justify-between mt-4 text-light-grey text-xs">
@@ -39,11 +56,13 @@ const Connexion = () => {
               ></input>
               Se souvenir de moi
             </label>
-            <p className="underline">Mot de passe oublié ?</p>
+            <Link to="/mot-de-passe-oublie">
+              <p className="underline">Mot de passe oublié ?</p>
+            </Link>
           </div>
         </div>
         <div className="mt-5">
-          <LargestButton text="Connexion" />
+          <LargestButton text="Connexion" onClick={handleConnexion} />
         </div>
         <div className="flex items-center justify-between mt-4 text-light-grey text-xs">
           <div className="h-px bg-light-grey mr-3 mt-1 w-56"></div>

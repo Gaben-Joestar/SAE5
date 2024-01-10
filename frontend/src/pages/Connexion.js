@@ -27,7 +27,7 @@ const Connexion = () => {
         <div className="inter-semi-bold text-black mt-6">
           <div>
             <label htmlFor="connexion" className="block mb-1">
-              Email ou pseudo
+              Email
             </label>
             <input
               id="email-pseudo"

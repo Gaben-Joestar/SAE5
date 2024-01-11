@@ -6,7 +6,6 @@ const jwt = require('jsonwebtoken');
 
 const creerToken = (mail, pseudo, mdp) => {
     const token = jwt.sign({ mail, pseudo, mdp }, 'shhhhh'); // Changer la clé de sécurité
-    console.log(token);
     return token
 }
 
@@ -25,16 +24,19 @@ const creerUtilisateur = async (req, res) => {
         if (existingUser) {
             return res.status(400).json({ success: false, message: 'Un utilisateur avec cette adresse e-mail existe déjà.' });
         }
+
+        // Création de l'utilisateur dans la base
+
         const hash = await bcrypt.hash(mdp, 8);
-        // Création de l'utilisateur 
         const insert = await collection.insertOne({
             mail: email,
             pseudo: pseudo,
             date_n: date_naissance,
-            mdp: hash
+            mdp: hash,
+            date_creation_compte: new Date()
         });
-
-        res.status(200).json({ success: true, message: 'Utilisateur créé avec succès.' });
+        const token = creerToken(email, pseudo, hash);
+        res.status(200).json({ success: true, message: 'Utilisateur créé avec succès.', token });
     } catch (error) {
         console.error('Erreur lors de la création de l\'utilisateur :', error);
         res.status(500).json({ success: false, message: 'Une erreur est survenue lors de la création de l\'utilisateur.' });
@@ -75,15 +77,12 @@ const connexionUtilisateur = async (req, res) => {
         if (utilisateur) {
             bcrypt.compare(mdp, utilisateur.mdp, function (err, res1) {
                 if (err) {
+                    console.error('Erreur lors de la comparaison des mots de passe :', err);
                     res.status(500).json({ success: false, message: 'Une erreur est survenue, veuillez réessayer plus tard' });
-                    console.log(utilisateur.mdp);
-                }
-                if (res) {
+                } else if (res1) {
                     const token = creerToken(utilisateur.mail, utilisateur.pseudo, utilisateur.mdp);
                     res.status(200).json({ success: true, message: 'OK', token });
-
                 } else {
-                    // response is OutgoingMessage object that server response http request
                     res.status(401).json({ success: false, message: 'Le mot de passe entré ne correspond pas' });
                 }
             });
@@ -94,8 +93,8 @@ const connexionUtilisateur = async (req, res) => {
         console.error('Erreur lors de la récupération de l\'utilisateur :', error);
         res.status(500).json({ success: false, message: 'Une erreur est survenue lors de la récupération de l\'utilisateur.' });
     }
+};
 
-}
 
 module.exports = {
     creerUtilisateur,

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const InscriptionPage4 = () => {
+const InscriptionPage4 = ({ onButtonClickGratuit, onButtonClickPremium }) => {
     return (
         <div className='flex flex-col mt-24'>
             <div className='flex flex-col items-center'>
@@ -44,7 +44,7 @@ const InscriptionPage4 = () => {
                             </li>
                         </ul>
                         <div className='flex flex-col align-middle mb-10'>
-                            <a href="/" className='underline inter-medium ml-auto mr-auto text-grey'>Continuer</a>
+                            <button className="px-5 py-1.5 bg-white-grey rounded-3xl text-grey  ml-5 mr-5" onClick={onButtonClickGratuit}>Continuer</button>
                         </div>
                     </div>
 
@@ -83,7 +83,7 @@ const InscriptionPage4 = () => {
                         </ul>
                         <div className='flex flex-col align-middle mb-10'>
                             <Link to="/paiement" className='flex flex-col align-middle'>
-                                <button className="px-5 py-1.5 bg-yellow rounded-3xl text-white  ml-5 mr-5">Choisir</button>
+                                <button className="px-5 py-1.5 bg-yellow rounded-3xl text-white  ml-5 mr-5" onClick={onButtonClickPremium}>Choisir</button>
                             </Link>
                         </div>
                     </div>

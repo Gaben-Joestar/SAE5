@@ -70,12 +70,12 @@ const AjoutQuestion = () => {
                                 name="question"
                                 id="question"
                                 required
-                                className="rounded-2xl drop-shadow-lg w-128 py-1 pl-3"
+                                className="rounded-2xl drop-shadow-lg w-128 py-1 pl-3 border-grey border-2 hover:bg-white-grey ease-in-out duration-200"
                                 onChange={handleInputChange}
                             />
                         </div>
                         <div className='flex flex-row gap-2'>
-                            <label htmlFor="theme" className='mt-auto mb-auto'>Thème :</label>
+                            <label htmlFor="theme" className='mt-auto mb-auto '>Thème :</label>
                             <select
                                 name="theme"
                                 required
@@ -100,7 +100,7 @@ const AjoutQuestion = () => {
                                     name="bonneReponse"
                                     id="bonneReponse"
                                     required
-                                    className="rounded-2xl drop-shadow-lg w-96 py-1 pl-3"
+                                    className="rounded-2xl drop-shadow-lg w-96 py-1 pl-3 border-green border-2 hover:bg-white-grey ease-in-out duration-200"
                                     onChange={handleInputChange}
                                 />
                             </div>
@@ -111,7 +111,7 @@ const AjoutQuestion = () => {
                                     name="reponse2"
                                     id="reponse2"
                                     required
-                                    className="rounded-2xl drop-shadow-lg w-96 py-1 pl-3"
+                                    className="rounded-2xl drop-shadow-lg w-96 py-1 pl-3 border-red border-2 hover:bg-white-grey ease-in-out duration-200"
                                     onChange={handleInputChange}
                                 />
                             </div>
@@ -124,7 +124,7 @@ const AjoutQuestion = () => {
                                     name="reponse3"
                                     id="reponse3"
                                     required
-                                    className="rounded-2xl drop-shadow-lg w-96 py-1 pl-3"
+                                    className="rounded-2xl drop-shadow-lg w-96 py-1 pl-3 border-red border-2 hover:bg-white-grey ease-in-out duration-200"
                                     onChange={handleInputChange}
                                 />
                             </div>
@@ -135,14 +135,14 @@ const AjoutQuestion = () => {
                                     name="reponse4"
                                     id="reponse4"
                                     required
-                                    className="rounded-2xl drop-shadow-lg w-96 py-1 pl-3"
+                                    className="rounded-2xl drop-shadow-lg w-96 py-1 pl-3 border-red border-2 hover:bg-white-grey ease-in-out duration-200"
                                     onChange={handleInputChange}
                                 />
                             </div>
                         </div>
                     </div>
                     <div className='ml-auto mr-auto mt-4'>
-                        <input type="submit" value="Valider" className='px-5 py-1.5 bg-grey rounded-3xl text-white w-48' />
+                        <input type="submit" value="Valider" className='px-5 py-1.5 bg-grey rounded-3xl text-white w-48 hover:w-64 hover:h-12 hover:bg-black ease-in-out duration-200' />
                     </div>
                 </form>
             </div>

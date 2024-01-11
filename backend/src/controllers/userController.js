@@ -3,22 +3,20 @@ const jwt = require('jsonwebtoken');
 
 
 //Fonction pour renvoyer le token
-
 const creerToken = (mail, pseudo, mdp) => {
     const token = jwt.sign({ mail, pseudo, mdp }, 'shhhhh'); // Changer la clé de sécurité
     return token
 }
 
-
-
 // Créer un utilisateur dans la base 
-
 const creerUtilisateur = async (req, res) => {
     const { email, pseudo, date_naissance, mdp } = req.body;
     const collection = req.db.collection('utilisateurs');
 
-    // Vérification que l'email rentré n'est pas déjà attribué à un autre utilisateur
+
     try {
+
+        // Vérification que l'email rentré n'est pas déjà attribué à un autre utilisateur
         const existingUser = await collection.findOne({ mail: email });
 
         if (existingUser) {
@@ -26,7 +24,6 @@ const creerUtilisateur = async (req, res) => {
         }
 
         // Création de l'utilisateur dans la base
-
         const hash = await bcrypt.hash(mdp, 8);
         const insert = await collection.insertOne({
             mail: email,
@@ -45,7 +42,6 @@ const creerUtilisateur = async (req, res) => {
 
 
 // Récupérer un utilisateur dans la base grâce à son adresse mail
-
 const recupererUtilisateur = async (req, res) => {
     const userEmail = req.params.email;
     const collection = req.db.collection('utilisateurs');
@@ -66,7 +62,6 @@ const recupererUtilisateur = async (req, res) => {
 
 
 // Connexion à un compte utilisateur
-
 const connexionUtilisateur = async (req, res) => {
     const { email, mdp } = req.body;
     const collection = req.db.collection('utilisateurs');
@@ -94,7 +89,6 @@ const connexionUtilisateur = async (req, res) => {
         res.status(500).json({ success: false, message: 'Une erreur est survenue lors de la récupération de l\'utilisateur.' });
     }
 };
-
 
 module.exports = {
     creerUtilisateur,

@@ -1,0 +1,17 @@
+const _colors = [
+  'border-red',
+  'border-green',
+  'border-yellow',
+  'border-purple',
+  'text-purple',
+  'text-yellow',
+  'bg-purple',
+  'bg-green',
+  'bg-yellow',
+  'fill-purple',
+  'fill-green',
+  'fill-red',
+  'stroke-red',
+  'stroke-purple',
+  'stroke-green',
+];

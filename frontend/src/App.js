@@ -11,7 +11,7 @@ import ChoixMode from './pages/ChoixMode';
 import ForgottenPassword from './pages/ForgottenPassword';
 import PreparationPartie from './pages/PreparationPartie';
 import Resultat from './pages/Resultat';
-
+import Lobby from './pages/Lobby';
 
 const App = () => {
   return (
@@ -26,7 +26,8 @@ const App = () => {
         <Route path='/rejoindre' element={<Rejoindre />} />
         <Route path='/choix-mode' element={<ChoixMode />} />
         <Route path='/mot-de-passe-oublie' element={<ForgottenPassword />} />
-        <Route path='/lobby' element={<PreparationPartie />} />
+        <Route path='/preparation' element={<PreparationPartie />} />
+        <Route path='/lobby/:codePartie' element={<Lobby />} />
         <Route path='/resultat' element={<Resultat />} />
         <Route path='*' element={<Home />} />
       </Routes>

@@ -5,7 +5,7 @@ const IconeJoueurGrande = ({
   color,
   isReady = false,
   isLogged = false,
-  numeroJoueur = '1',
+  nomJoueur = 'Joueur',
 }) => {
   return (
     <div>
@@ -37,8 +37,10 @@ const IconeJoueurGrande = ({
           `text-${color} inter-extra-bold flex justify-center text-2xl`,
           !isLogged && 'text-light-grey',
         )}
-      >{`Joueur ${numeroJoueur}`}</p>
-      {numeroJoueur !== '1' && isLogged && (
+      >
+        {nomJoueur}
+      </p>
+      {nomJoueur !== '1' && isLogged && (
         <div className='flex justify-center'>
           <svg
             xmlns='http://www.w3.org/2000/svg'

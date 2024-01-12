@@ -19,7 +19,7 @@ const Resultat = () => {
       {
         nom: 'Joueur 3',
         couleur: 'green',
-        score: 20,
+        score: 18,
       },
       {
         nom: 'Joueur 4',

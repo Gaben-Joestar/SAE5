@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Header from '../components/Header';
+import { useWs } from '../hooks/useWs';
 
 const { default: Button } = require('../components/Button');
 const { default: CodePartie } = require('../components/CodePartie');
@@ -11,8 +12,7 @@ const {
 const Lobby = () => {
   const { codePartie } = useParams();
   const [infosServer, setInfosServer] = useState('null');
-  const [numeroUtilisateur, setNumeroUtilisateur] = useState('null');
-
+  const [ready, val, send] = useWs('ws://localhost:8082');
   const fetchData = async () => {
     try {
       const response = await fetch(
@@ -29,10 +29,6 @@ const Lobby = () => {
       if (response.ok) {
         const data = await response.json();
         setInfosServer(data.infoPartie);
-        if (numeroUtilisateur === 'null') {
-          setNumeroUtilisateur('anto');
-        }
-        console.log(numeroUtilisateur);
         // Mettez à jour l'interface utilisateur ou effectuez d'autres actions nécessaires.
       } else {
         const errorData = await response.json();
@@ -49,6 +45,12 @@ const Lobby = () => {
   useEffect(() => {
     fetchData();
   }, []);
+
+  useEffect(() => {
+    if (val !== null) {
+      fetchData();
+    }
+  }, [val]);
 
   return (
     <div>

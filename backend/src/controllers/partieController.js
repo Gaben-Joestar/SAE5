@@ -3,6 +3,7 @@ const {
   ajouterParticipant,
 } = require('./participantController');
 const { BSON } = require('bson');
+const { openWebsocket } = require('./websocketController');
 
 const creerPartie = async (req, res) => {
   const {
@@ -23,6 +24,7 @@ const creerPartie = async (req, res) => {
     const insertedId = insert.insertedId;
     const participantCreer = creerParticipants(req, hote, insertedId);
     if (participantCreer) {
+      openWebsocket(code_partie);
       res
         .status(200)
         .json({ success: true, message: 'Partie créée avec succès.' });

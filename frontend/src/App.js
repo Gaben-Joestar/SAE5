@@ -11,6 +11,7 @@ import ChoixMode from './pages/ChoixMode';
 import ForgottenPassword from './pages/ForgottenPassword';
 import PreparationPartie from './pages/PreparationPartie';
 import Resultat from './pages/Resultat';
+import Backlog from './pages/Backlog';
 
 
 const App = () => {
@@ -28,6 +29,7 @@ const App = () => {
         <Route path='/mot-de-passe-oublie' element={<ForgottenPassword />} />
         <Route path='/lobby' element={<PreparationPartie />} />
         <Route path='/resultat' element={<Resultat />} />
+        <Route path='/backlog' element={<Backlog />} />
         <Route path='*' element={<Home />} />
       </Routes>
     </BrowserRouter>

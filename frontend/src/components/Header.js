@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Button from "./Button";
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 const Header = () => {
   const [isConnected, setIsConnected] = useState(false);
@@ -31,15 +31,19 @@ const Header = () => {
   return (
     <div className="flex justify-between items-center my-3 inter-semi-bold ">
       <div className="flex items-center text-grey">
-        <Link to="/"><img src="./img/petit-logo.PNG" alt="Petit logo" className="mr-4 ml-4 w-21 h-16" /></Link>
-        <Link to="/rejoindre" className="ml-20">Rejoindre</Link>
-        <Link to="/prix" className="ml-20">Prix</Link>
-        <Link to="/ajout-question" className="ml-20">Proposer une Question</Link>
+        <NavLink to="/"><img src="./img/petit-logo.PNG" alt="Petit logo" className="mr-4 ml-4 w-21 h-16" /></NavLink>
+        <NavLink to="/rejoindre" className="ml-20 " style={({ isActive }) => { return isActive ? { color: "#C6DFDF" } : {}; }}>Rejoindre</NavLink>
+        <NavLink to="/prix" className="ml-20" style={({ isActive }) => { return isActive ? { color: "#C6DFDF" } : {}; }}>Prix</NavLink>
+        <NavLink to="/ajout-question" className="ml-20" style={({ isActive }) => { return isActive ? { color: "#C6DFDF" } : {}; }}>Proposer une Question</NavLink>
       </div>
       {!isConnected ? (
         <div className="flex items-center mr-8">
-          <Link to="/connexion" className="mr-5">Connexion</Link>
-          <Link to="/inscription"><Button text='Inscription' /></Link>
+          <NavLink to="/connexion" className="mr-5" style={({ isActive }) => { return isActive ? { color: "#C6DFDF" } : {}; }}>Connexion</NavLink>
+          <NavLink to="/inscription" isActive={(match, location) => location.pathname === "/inscription"}>
+            {({ isActive }) => (
+              <Button text='Inscription' className={isActive ? 'background-black' : 'background-grey'} />
+            )}
+          </NavLink>
         </div>
       ) : (
         <div className="flex items-center mr-8">

@@ -3,7 +3,7 @@
 // Créer une question dans la base 
 const creerQuestion = async (req, res) => {
     const { theme, question, bonneRep, rep2, rep3, rep4 } = req.body;
-    const collection = req.db.collection('questions');
+    const collection = req.db.collection('pendingQuestions');
 
     try {
         // Création de la question dans la base

@@ -118,3 +118,11 @@ h6 {
 .w-2-7 {
     width: 2/7;
 }
+
+.background-black {
+    background-color: black;
+}
+
+.background-grey {
+    background-color: grey;
+}

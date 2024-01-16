@@ -114,3 +114,15 @@ h6 {
     transition: left 0.5s ease-in-out;
 
 }
+
+.w-2-7 {
+    width: 2/7;
+}
+
+.background-black {
+    background-color: black;
+}
+
+.background-grey {
+    background-color: grey;
+}

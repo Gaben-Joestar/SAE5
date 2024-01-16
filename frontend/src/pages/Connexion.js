@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 const Connexion = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [connexionError, setConnexionError] = useState('');
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -15,9 +16,42 @@ const Connexion = () => {
     setPassword(e.target.value);
   }
 
-  const handleConnexion = () => {
+  const handleConnexion = async () => {
+    try {
+      const response = await fetch('http://localhost:3000/user/connexion', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        mode: 'cors',
+        body: JSON.stringify({
+          email: email,
+          mdp: password,
+        }),
+      });
 
+      if (response.ok) {
+        // E-mail et mot de passe sont bons
+        creerCookie(response.token, 5);
+        window.location.href = '/'
+      } else {
+        // E-mail bon mais pas mot de passe
+        const errorData = await response.json();
+        setConnexionError(errorData.message);
+      }
+    } catch (error) {
+      setConnexionError('Une erreur est survenue. Veuillez réessayer plus tard');
+    }
   }
+
+  const creerCookie = (token, nbJours) => {
+    const expirationDate = new Date();
+    expirationDate.setDate(expirationDate.getDate() + nbJours);
+
+    document.cookie = `jwt=${token}; expires=${expirationDate.toUTCString()}; path=/`;
+  };
+
+  const isDisabled = !email || !password;
 
   return (
     <div>
@@ -27,7 +61,7 @@ const Connexion = () => {
         <div className="inter-semi-bold text-black mt-6">
           <div>
             <label htmlFor="connexion" className="block mb-1">
-              Email ou pseudo
+              Email
             </label>
             <input
               id="email-pseudo"
@@ -40,6 +74,7 @@ const Connexion = () => {
               Mot de passe
             </label>
             <input
+              type='password'
               id="password"
               className="rounded-2xl drop-shadow-md w-128 py-1 px-2"
               name="password"
@@ -61,8 +96,9 @@ const Connexion = () => {
             </Link>
           </div>
         </div>
+        {connexionError && <p className=" text-red pt-3">{connexionError}</p>}
         <div className="mt-5">
-          <LargestButton text="Connexion" onClick={handleConnexion} />
+          <LargestButton text="Connexion" onClick={handleConnexion} disabled={isDisabled} />
         </div>
         <div className="flex items-center justify-between mt-4 text-light-grey text-xs">
           <div className="h-px bg-light-grey mr-3 mt-1 w-56"></div>

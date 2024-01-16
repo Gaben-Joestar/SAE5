@@ -49,7 +49,16 @@ const Inscription = () => {
         setAfficherPage2(false);
         setAfficherPage3(false);
         setAfficherPage4(true);
-        handleCreateUser();
+    }
+
+    const handleClickGratuit = async () => {
+        await handleCreateUser();
+        window.location.href = '/'
+
+    }
+    const handleClickPremium = async () => {
+        await handleCreateUser();
+        window.location.href = '/paiement'
     }
 
     const handleEmailRecup = (newEmail) => {
@@ -85,19 +94,25 @@ const Inscription = () => {
             });
 
             if (response.ok) {
-                const data = await response.json();
-                console.log('Utilisateur créé avec succès :', data);
-                // Mettez à jour l'interface utilisateur ou effectuez d'autres actions nécessaires.
+                creerCookie();
             } else {
                 const errorData = await response.json();
                 console.error('Erreur lors de la création de l\'utilisateur :', errorData);
-                // Gérez l'erreur, par exemple, affichez un message d'erreur à l'utilisateur.
             }
         } catch (error) {
             console.error('Erreur lors de la requête :', error);
-            // Gérez les erreurs lors de l'envoi de la requête.
         }
     }
+
+    const creerCookie = (token) => {
+        const nbJours = 5;
+        const expirationDate = new Date();
+        expirationDate.setDate(expirationDate.getDate() + nbJours);
+
+        document.cookie = `jwt=${token}; expires=${expirationDate.toUTCString()}; path=/`;
+        console.log('Cookie JWT créé');
+    };
+
 
     return (
         <div className='flex flex-col'>
@@ -113,7 +128,7 @@ const Inscription = () => {
                 onReturnClick={buttonClicked1}
                 onPasswordRecup={handlePasswordRecup} />}
             {afficherPage3 && <InscriptionPage3 onButtonClick={buttonClicked4} onReturnClick={buttonClicked2} />}
-            {afficherPage4 && <InscriptionPage4 />}
+            {afficherPage4 && <InscriptionPage4 onButtonClickGratuit={handleClickGratuit} onButtonClickPremium={handleClickPremium} />}
         </div>
     );
 };

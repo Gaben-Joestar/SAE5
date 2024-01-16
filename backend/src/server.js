@@ -4,6 +4,9 @@ const app = express();
 const quizzRoutes = require('./routes/quizzRoutes');
 const userRoutes = require('./routes/userRoutes');
 const partieRoutes = require('./routes/partieRoutes');
+const payRoutes = require('./routes/payRoutes');
+const questionRoutes = require('./routes/questionRoutes');
+const themeRoutes = require('./routes/themeRoutes');
 
 const dbConnectionMiddleware = require('./middlewares/dbConnectionMiddleware');
 
@@ -23,6 +26,12 @@ app.use(cors(corsOptions));
 app.use('/quizz', quizzRoutes);
 app.use('/user', userRoutes);
 app.use('/partie', partieRoutes);
+
+app.use('/yunuspay', payRoutes)
+
+app.use('/question', questionRoutes);
+app.use('/theme', themeRoutes);
+
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => {

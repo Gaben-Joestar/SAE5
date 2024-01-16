@@ -12,6 +12,7 @@ import ForgottenPassword from './pages/ForgottenPassword';
 import PreparationPartie from './pages/PreparationPartie';
 import Resultat from './pages/Resultat';
 import Lobby from './pages/Lobby';
+import Backlog from './pages/Backlog';
 
 const App = () => {
   return (
@@ -29,6 +30,8 @@ const App = () => {
         <Route path='/preparation' element={<PreparationPartie />} />
         <Route path='/lobby/:codePartie' element={<Lobby />} />
         <Route path='/resultat/:codePartie' element={<Resultat />} />
+        <Route path='/resultat' element={<Resultat />} />
+        <Route path='/backlog' element={<Backlog />} />
         <Route path='*' element={<Home />} />
       </Routes>
     </BrowserRouter>

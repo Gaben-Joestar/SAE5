@@ -22,7 +22,6 @@ const Partie = () => {
         navigate(`/resultat/${codePartie}`);
       } else {
         try {
-          send(reponseCliquee + token);
           setQuestionsJSON(JSON.parse(val));
         } catch (error) {}
         setIsQuestion(true);
@@ -31,7 +30,7 @@ const Partie = () => {
   }, [val]);
 
   useEffect(() => {
-    if (ready) {
+    if (ready && questionsJSON === null) {
       send('start_game');
     }
   }, [ready]);
@@ -60,8 +59,8 @@ const Partie = () => {
         ></input>
         <div className='mt-4 text-white bg-grey p-6 w-144 rounded-xl'>
           <Question
-            question={isQuestion ? questionsJSON.question : 'pas de question'}
-            numeroQuestion={isQuestion ? questionsJSON.numeroQuestion : 'none'}
+            question={isQuestion ? questionsJSON?.question : 'pas de question'}
+            numeroQuestion={isQuestion ? questionsJSON?.numeroQuestion : 'none'}
             nombreQuestion={2}
           />
         </div>
@@ -70,7 +69,7 @@ const Partie = () => {
           <div className='flex items-center justify-between mt-4 w-144 gap-5'>
             <Reponse
               reponse={
-                isQuestion ? questionsJSON.bonneReponse : 'pas de reponse'
+                isQuestion ? questionsJSON?.bonneReponse : 'pas de reponse'
               }
               onClick={() => {
                 setReponseCliquee(0);
@@ -81,7 +80,7 @@ const Partie = () => {
             <Reponse
               reponse={
                 isQuestion
-                  ? questionsJSON.mauvaisesReponses.mauvaiseReponse1
+                  ? questionsJSON?.mauvaisesReponses?.mauvaiseReponse1
                   : 'pas de reponse'
               }
               onClick={() => {
@@ -95,7 +94,7 @@ const Partie = () => {
             <Reponse
               reponse={
                 isQuestion
-                  ? questionsJSON.mauvaisesReponses.mauvaiseReponse2
+                  ? questionsJSON?.mauvaisesReponses?.mauvaiseReponse2
                   : 'pas de reponse'
               }
               onClick={() => {
@@ -107,7 +106,7 @@ const Partie = () => {
             <Reponse
               reponse={
                 isQuestion
-                  ? questionsJSON.mauvaisesReponses.mauvaiseReponse3
+                  ? questionsJSON?.mauvaisesReponses?.mauvaiseReponse3
                   : 'pas de reponse'
               }
               onClick={() => {

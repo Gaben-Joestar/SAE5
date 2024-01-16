@@ -19,7 +19,7 @@ const App = () => {
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/connexion' element={<Connexion />} />
-        <Route path='/partie' element={<Partie />} />
+        <Route path='/partie/:codePartie' element={<Partie />} />
         <Route path='/inscription' element={<Inscription />} />
         <Route path='/paiement' element={<Paiement />} />
         <Route path='/ajout-question' element={<AjoutQuestion />} />
@@ -28,7 +28,7 @@ const App = () => {
         <Route path='/mot-de-passe-oublie' element={<ForgottenPassword />} />
         <Route path='/preparation' element={<PreparationPartie />} />
         <Route path='/lobby/:codePartie' element={<Lobby />} />
-        <Route path='/resultat' element={<Resultat />} />
+        <Route path='/resultat/:codePartie' element={<Resultat />} />
         <Route path='*' element={<Home />} />
       </Routes>
     </BrowserRouter>

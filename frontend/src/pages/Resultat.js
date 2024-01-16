@@ -2,6 +2,7 @@ import React from 'react';
 import Header from '../components/Header';
 import CarteResultat from '../components/CarteResultat';
 import Button from '../components/Button';
+import { Link } from 'react-router-dom';
 
 const Resultat = () => {
   const joueursJSON = {
@@ -55,7 +56,9 @@ const Resultat = () => {
             );
           })}
         </div>
-        <Button text={'Rejouer'} className={'px-14 text-xl mt-5'} />
+        <Link to='/preparation'>
+          <Button text={'Rejouer'} className={'px-14 text-xl mt-5'} />
+        </Link>
       </div>
     </div>
   );

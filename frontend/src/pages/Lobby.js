@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import Header from '../components/Header';
 import { useWs } from '../hooks/useWs';
 
@@ -13,6 +13,8 @@ const Lobby = () => {
   const { codePartie } = useParams();
   const [infosServer, setInfosServer] = useState('null');
   const [ready, val, send] = useWs('ws://localhost:8082');
+  const navigate = useNavigate();
+
   const fetchData = async () => {
     try {
       const response = await fetch(
@@ -49,6 +51,10 @@ const Lobby = () => {
   useEffect(() => {
     if (val !== null) {
       fetchData();
+      if (val === 'lancement') {
+        navigate(`/partie/${codePartie}`);
+      }
+      console.log(val);
     }
   }, [val]);
 
@@ -101,15 +107,18 @@ const Lobby = () => {
                   : infosServer.participant4
               }
             />
-            <button onClick={(codePartie) => fetchData(codePartie)}>
-              tetet
-            </button>
-            <Button
-              text={'Commencer'}
-              className={
-                'px-12 text-xl mt-10 absolute right-0 bottom-0 translate-y-28'
-              }
-            />
+            <div
+              onClick={() => {
+                send('launch');
+              }}
+            >
+              <Button
+                text={`Commencer`}
+                className={
+                  'px-12 text-xl mt-10 absolute right-0 bottom-0 translate-y-28'
+                }
+              />
+            </div>
           </div>
         </div>
       </div>

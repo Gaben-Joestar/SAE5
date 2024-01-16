@@ -3,82 +3,50 @@ import Header from '../components/Header';
 import IconeJoueur from '../components/IconeJoueur';
 import Question from '../components/Question';
 import Reponse from '../components/Reponse';
+import { useWs } from '../hooks/useWs';
+import { useNavigate, useParams } from 'react-router-dom';
 
 const Partie = () => {
-  const [dataIndex, setDataIndex] = useState(0);
   const [reponseCliquee, setReponseCliquee] = useState(null);
-  const [listePlaceQuestions, setListePlaceQuestions] = useState({});
+  const [isQuestion, setIsQuestion] = useState(false);
+  const navigate = useNavigate();
+  const { codePartie } = useParams();
+  const [questionsJSON, setQuestionsJSON] = useState(null);
+  const [ready, val, send] = useWs('ws://localhost:8082');
 
-  const questionsJSON = {
-    questions: [
-      {
-        question: 'que vaut 1+1',
-        bonneReponse: '2',
-        mauvaisesReponses: {
-          mauvaiseReponse1: '3',
-          mauvaiseReponse2: '4',
-          mauvaiseReponse3: '5',
-        },
-      },
-      {
-        question: 'test',
-        bonneReponse: 'bonne rep',
-        mauvaisesReponses: {
-          mauvaiseReponse1: 'mauvaise1',
-          mauvaiseReponse2: 'mauvaise2',
-          mauvaiseReponse3: 'mauvaise3',
-        },
-      },
-    ],
-  };
-
-  const ajouterReponse = (reponseMel, bonneReponseIndex, dataIndex) => {
-    const listeReponse = {
-      idQuestion: dataIndex,
-      reponse1: reponseMel[0],
-      reponse2: reponseMel[1],
-      reponse3: reponseMel[2],
-      reponse4: reponseMel[3],
-      indexBonneReponse: bonneReponseIndex,
-    };
-    setListePlaceQuestions([listePlaceQuestions, listeReponse]);
-  };
-
-  const reponses = Object.values({
-    ...questionsJSON.questions[dataIndex].mauvaisesReponses,
-    bonneReponse: questionsJSON.questions[dataIndex].bonneReponse,
-  });
-
-  const reponsesMelangees = reponses.sort(() => Math.random() - 0.5);
-  const [reponseMel, setReponseMel] = useState(reponsesMelangees);
-
-  const bonneReponseIndex = reponsesMelangees.findIndex(
-    (reponse) => reponse === questionsJSON.questions[dataIndex].bonneReponse,
-  );
+  const token = 5;
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setReponseCliquee(null);
-      setReponseMel(reponsesMelangees);
+    if (val !== null) {
+      if (val === 'fin') {
+        navigate(`/resultat/${codePartie}`);
+      } else {
+        try {
+          send(reponseCliquee + token);
+          setQuestionsJSON(JSON.parse(val));
+        } catch (error) {}
+        setIsQuestion(true);
+      }
+    }
+  }, [val]);
 
-      //ajouterReponse(reponseMel, bonneReponseIndex, dataIndex);
-      setDataIndex((prevIndex) => {
-        const nextIndex = prevIndex + 1;
-        return nextIndex >= questionsJSON.questions.length
-          ? prevIndex
-          : nextIndex;
-      });
-    }, 10000); // 10 secondes
+  useEffect(() => {
+    if (ready) {
+      send('start_game');
+    }
+  }, [ready]);
 
-    return () => clearInterval(interval);
-  }, [questionsJSON.questions.length, reponseCliquee, reponsesMelangees]);
+  /*const reponses = Object.values({
+    ...questionsJSON.questions[dataIndex].mauvaisesReponses,
+    bonneReponse: questionsJSON.questions[dataIndex].bonneReponse,
+  });*/
 
   return (
     <div>
       <Header />
       <div className='flex flex-col items-center mt-10'>
         <div className='flex items-center justify-between mt-4 w-72'>
-          <IconeJoueur />
+          <IconeJoueur className='border-red' />
           <IconeJoueur />
           <IconeJoueur />
           <IconeJoueur />
@@ -92,16 +60,18 @@ const Partie = () => {
         ></input>
         <div className='mt-4 text-white bg-grey p-6 w-144 rounded-xl'>
           <Question
-            question={questionsJSON.questions[dataIndex].question}
-            numeroQuestion={dataIndex + 1}
-            nombreQuestion={questionsJSON.questions.length}
+            question={isQuestion ? questionsJSON.question : 'pas de question'}
+            numeroQuestion={isQuestion ? questionsJSON.numeroQuestion : 'none'}
+            nombreQuestion={2}
           />
         </div>
 
         <div className='relative'>
           <div className='flex items-center justify-between mt-4 w-144 gap-5'>
             <Reponse
-              reponse={reponseMel[0]}
+              reponse={
+                isQuestion ? questionsJSON.bonneReponse : 'pas de reponse'
+              }
               onClick={() => {
                 setReponseCliquee(0);
               }}
@@ -109,7 +79,11 @@ const Partie = () => {
               idButton={0}
             />
             <Reponse
-              reponse={reponseMel[1]}
+              reponse={
+                isQuestion
+                  ? questionsJSON.mauvaisesReponses.mauvaiseReponse1
+                  : 'pas de reponse'
+              }
               onClick={() => {
                 setReponseCliquee(1);
               }}
@@ -119,7 +93,11 @@ const Partie = () => {
           </div>
           <div className='flex items-center justify-between mt-0.5 w-144 gap-5'>
             <Reponse
-              reponse={reponseMel[2]}
+              reponse={
+                isQuestion
+                  ? questionsJSON.mauvaisesReponses.mauvaiseReponse2
+                  : 'pas de reponse'
+              }
               onClick={() => {
                 setReponseCliquee(2);
               }}
@@ -127,7 +105,11 @@ const Partie = () => {
               idButton={2}
             />
             <Reponse
-              reponse={reponseMel[3]}
+              reponse={
+                isQuestion
+                  ? questionsJSON.mauvaisesReponses.mauvaiseReponse3
+                  : 'pas de reponse'
+              }
               onClick={() => {
                 setReponseCliquee(3);
               }}

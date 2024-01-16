@@ -1,6 +1,29 @@
 import React from 'react';
 import Header from '../components/Header';
 
+
+const Paiement = () => {
+    async function paiement() {                               
+        var result = await fetch('http://localhost:3000/yunuspay/start', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            mode: 'cors'
+        });
+        if (result.status == "success"){
+            window.location.replace(result.data.url);
+        }else{
+            console.log("Erreur lors du déclenchement du paiement.");
+        }
+    }
+    function testpaiementStripe(){
+        window.location.replace('https://buy.stripe.com/test_aEUcMSaz6h0A8Jq3cc');
+    }
+    function paiementStripe(){
+        window.location.replace('https://buy.stripe.com/3cs6qGaFmbj8eY04gg');
+    }
+
 const url = "http://dev.yunusfin.tech/vp_mp/ws/web/start?";
 const merchant = "merchant=kHZ9Hc1lKSK7yExg";
 const reference = "&reference="+makeid(18);
@@ -35,6 +58,7 @@ function paiement() {
 </script>
 
 const Paiement = () => {
+
     return (
         <div>
             <Header />
@@ -89,6 +113,18 @@ const Paiement = () => {
 
 
                     <div className='ml-auto mr-auto '>
+
+                        {/*Vrai bouton*/}
+                        <button onClick={paiementStripe}>Paiement CB</button>
+                    </div>
+                    <div className='ml-auto mr-auto '>
+                        {/*Bouton de test*/}
+                        <button onClick={testpaiementStripe}>Test Paiement CB</button>
+                    </div>
+                    <div className='ml-auto mr-auto '>
+                        {/* Bouton YunusPay*/}
+                        <button onClick={paiement}>Paiement YunusPay</button>
+
                         //Vrai bouton
                         <script async
                             src="https://js.stripe.com/v3/buy-button.js">
@@ -111,6 +147,7 @@ const Paiement = () => {
 
                         <button onclick="paiement()">Paiement YunusPay</button>
                         
+
                     </div>
 
                 </form>

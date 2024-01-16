@@ -1,6 +1,7 @@
 import React from 'react';
 import Header from '../components/Header';
 
+
 const Paiement = () => {
     async function paiement() {                               
         var result = await fetch('http://localhost:3000/yunuspay/start', {
@@ -22,6 +23,42 @@ const Paiement = () => {
     function paiementStripe(){
         window.location.replace('https://buy.stripe.com/3cs6qGaFmbj8eY04gg');
     }
+
+const url = "http://dev.yunusfin.tech/vp_mp/ws/web/start?";
+const merchant = "merchant=kHZ9Hc1lKSK7yExg";
+const reference = "&reference="+makeid(18);
+const amount = "&amount=3273.23";
+const narration = "&narration=LPTQPremium";
+const mcc = "&mcc=11.121";
+const options = {
+    headers: {
+        "Content-type": "application/x-www-form-urlencoded",
+        "Authorization" : "Bearer at_mp_web_ws"
+    }
+}
+
+function makeid(length) {
+    let result = '';
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    const charactersLength = characters.length;
+    let counter = 0;
+    while (counter < length) {
+      result += characters.charAt(Math.floor(Math.random() * charactersLength));
+      counter += 1;
+    }
+    return result;
+}
+
+<script>
+function paiement() {                               
+    fetch(url+merchant+reference+amount+narration+mcc, headers)
+        .then( res => res.json() )
+        .then( data => console.log(data) )
+}
+</script>
+
+const Paiement = () => {
+
     return (
         <div>
             <Header />
@@ -76,6 +113,7 @@ const Paiement = () => {
 
 
                     <div className='ml-auto mr-auto '>
+
                         {/*Vrai bouton*/}
                         <button onClick={paiementStripe}>Paiement CB</button>
                     </div>
@@ -86,6 +124,30 @@ const Paiement = () => {
                     <div className='ml-auto mr-auto '>
                         {/* Bouton YunusPay*/}
                         <button onClick={paiement}>Paiement YunusPay</button>
+
+                        //Vrai bouton
+                        <script async
+                            src="https://js.stripe.com/v3/buy-button.js">
+                        </script>
+                        <stripe-buy-button
+                        buy-button-id="buy_btn_1OYR0XGUnAcI8KjetvS0HSny"
+                        publishable-key="pk_live_51OXMcKGUnAcI8KjejGoqD9xtcVh78GOPbCwmJYSO2heha1TaWyzsWnqMx8vCtKXXjeHufSxJPHj9YI5RMxKP8IJ800DAjyWONj"
+                        >
+                        </stripe-buy-button>
+
+                        //Bouton de test
+                        <script async
+                            src="https://js.stripe.com/v3/buy-button.js">
+                        </script>
+                        <stripe-buy-button
+                        buy-button-id="buy_btn_1OYUdLGUnAcI8KjegizoXkCs"
+                        publishable-key="pk_test_51OXMcKGUnAcI8KjeaHiIuXmwptlzbdeThMmUMt2Kzky5oM70USim3WDbCWfawtRmTN7vNLT5NgoFntRLgsZCZaDj00ZpuLSDZ9"
+                        >
+                        </stripe-buy-button>
+
+                        <button onclick="paiement()">Paiement YunusPay</button>
+                        
+
                     </div>
 
                 </form>

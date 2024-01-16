@@ -37,3 +37,92 @@
 .inter-extra-bold {
     font-family: 'Inter Extra Bold', sans-serif;
 }
+
+h1 {
+    font-size: 2em;
+    font-weight: bold;
+}
+
+h2 {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+h3 {
+    font-size: 1.17em;
+    font-weight: bold;
+}
+
+h4 {
+    font-size: 1em;
+    font-weight: bold;
+}
+
+h5 {
+    font-size: 0.83em;
+    font-weight: bold;
+}
+
+h6 {
+    font-size: 0.67em;
+    font-weight: bold;
+}
+
+.custom-range {
+    background-color: #E7E7E7;
+    accent-color: #F2DF79;
+}
+
+.rounded-perso {
+    border-radius: 3rem;
+    -webkit-border-radius: 3rem;
+    -moz-border-radius: 3rem;
+}
+
+.imageLoupe {
+    margin-top: -3rem;
+}
+
+.progress-bar {
+    position: relative;
+    width: 20vw;
+    height: 1rem;
+    background-color: #f7f7f7;
+    border-radius: 1.5em;
+    color: white;
+}
+
+.progress-bar::before {
+    content: '';
+    display: flex;
+    align-items: center;
+    position: absolute;
+    width: var(--progress);
+    min-width: 2rem;
+    max-width: 101%;
+    background-color: #F2DF79;
+    border-radius: 1em;
+    left: -.5%;
+    padding: .5em;
+    transition: width 0.5s ease-in-out
+}
+
+.progress-bar img {
+    position: absolute;
+    left: calc(var(--progress) - 10%);
+    top: -80%;
+    transition: left 0.5s ease-in-out;
+
+}
+
+.w-2-7 {
+    width: 2/7;
+}
+
+.background-black {
+    background-color: black;
+}
+
+.background-grey {
+    background-color: grey;
+}

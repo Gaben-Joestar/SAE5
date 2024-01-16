@@ -49,7 +49,6 @@ const Connexion = () => {
     expirationDate.setDate(expirationDate.getDate() + nbJours);
 
     document.cookie = `jwt=${token}; expires=${expirationDate.toUTCString()}; path=/`;
-    console.log('Cookie JWT créé');
   };
 
   const isDisabled = !email || !password;

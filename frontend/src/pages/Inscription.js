@@ -51,13 +51,13 @@ const Inscription = () => {
         setAfficherPage4(true);
     }
 
-    const handleClickGratuit = () => {
-        handleCreateUser();
+    const handleClickGratuit = async () => {
+        await handleCreateUser();
         window.location.href = '/'
 
     }
-    const handleClickPremium = () => {
-        handleCreateUser();
+    const handleClickPremium = async () => {
+        await handleCreateUser();
         window.location.href = '/paiement'
     }
 

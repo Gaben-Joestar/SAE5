@@ -14,7 +14,7 @@ const Backlog = () => {
         if (token) {
             setIsLoggedIn(true);
         }
-    });
+    }, []);
 
     const handleTabChange = (tab) => {
         setActiveTab(tab);

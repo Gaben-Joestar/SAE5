@@ -4,5 +4,6 @@ const themeController = require('../controllers/themeController');
 
 router.post('/creer', themeController.creerTheme);
 router.get('/recuperer', themeController.recupererThemes);
+router.delete('/supprimer/:nom', themeController.supprimerThemes);
 
 module.exports = router;

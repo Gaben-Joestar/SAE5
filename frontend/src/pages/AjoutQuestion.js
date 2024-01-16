@@ -6,10 +6,10 @@ const AjoutQuestion = () => {
     const [formData, setFormData] = useState({
         question: '',
         theme: '',
-        bonneReponse: '',
-        reponse2: '',
-        reponse3: '',
-        reponse4: '',
+        bonneRep: '',
+        rep2: '',
+        rep3: '',
+        rep4: '',
     });
 
     useEffect(() => {
@@ -97,8 +97,8 @@ const AjoutQuestion = () => {
                                 <label htmlFor="bonneReponse" className='pl-3'>Bonne réponse :</label>
                                 <input
                                     type="text"
-                                    name="bonneReponse"
-                                    id="bonneReponse"
+                                    name="bonneRep"
+                                    id="bonneRep"
                                     required
                                     className="rounded-2xl drop-shadow-lg w-96 py-1 pl-3 border-green border-2 hover:bg-white-grey ease-in-out duration-200"
                                     onChange={handleInputChange}
@@ -108,8 +108,8 @@ const AjoutQuestion = () => {
                                 <label htmlFor="reponse2" className='pl-3'>Réponse 2 :</label>
                                 <input
                                     type="text"
-                                    name="reponse2"
-                                    id="reponse2"
+                                    name="rep2"
+                                    id="rep2"
                                     required
                                     className="rounded-2xl drop-shadow-lg w-96 py-1 pl-3 border-red border-2 hover:bg-white-grey ease-in-out duration-200"
                                     onChange={handleInputChange}
@@ -121,8 +121,8 @@ const AjoutQuestion = () => {
                                 <label htmlFor="reponse3" className='pl-3'>Réponse 3 :</label>
                                 <input
                                     type="text"
-                                    name="reponse3"
-                                    id="reponse3"
+                                    name="rep3"
+                                    id="rep3"
                                     required
                                     className="rounded-2xl drop-shadow-lg w-96 py-1 pl-3 border-red border-2 hover:bg-white-grey ease-in-out duration-200"
                                     onChange={handleInputChange}
@@ -132,8 +132,8 @@ const AjoutQuestion = () => {
                                 <label htmlFor="reponse4" className='pl-3'>Réponse 4 :</label>
                                 <input
                                     type="text"
-                                    name="reponse4"
-                                    id="reponse4"
+                                    name="rep4"
+                                    id="rep4"
                                     required
                                     className="rounded-2xl drop-shadow-lg w-96 py-1 pl-3 border-red border-2 hover:bg-white-grey ease-in-out duration-200"
                                     onChange={handleInputChange}

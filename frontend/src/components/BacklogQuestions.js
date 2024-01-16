@@ -1,27 +1,73 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 const BacklogQuestions = () => {
-    const questions = [
-        {
-            theme: 'Theme 1',
-            question: 'Quelle est la question ?',
-            bonneRep: 'Bonne réponse',
-            rep2: 'Réponse 2',
-            rep3: 'Réponse 3',
-            rep4: 'Réponse 4',
-            id: 1, // Un identifiant unique pour chaque question
-        },
-        // ... Ajoutez d'autres questions ici
-    ];
+    const [questions, setQuestions] = useState([]);
 
-    const handleValider = (id) => {
-        // Logique pour valider une question
-        console.log(`Question validée avec l'ID ${id}`);
+    useEffect(() => {
+        fetchQuestions();
+    }, []);
+
+    const fetchQuestions = async () => {
+        try {
+            const response = await fetch('http://localhost:3000/question/recuperer');
+            if (response.ok) {
+                const data = await response.json();
+                console.log(data);
+                setQuestions(data.questions);
+            } else {
+                console.error('Erreur lors de la récupération des questions');
+            }
+        } catch (error) {
+            console.error('Erreur lors de la requête:', error);
+        }
     };
 
-    const handleRefuser = (id) => {
-        // Logique pour refuser une question
-        console.log(`Question refusée avec l'ID ${id}`);
+    const handleValider = async (question) => {
+        try {
+            const response = await fetch(`http://localhost:3000/question/valider/`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                mode: 'cors',
+                body: JSON.stringify({
+                    theme: question.theme,
+                    question: question.question,
+                    bonneRep: question.bonneRep,
+                    rep2: question.rep2,
+                    rep3: question.rep3,
+                    rep4: question.rep4,
+                }),
+            });
+
+            if (response.ok) {
+                console.log(`Question validée `);
+                handleRefuser(question._id);
+                fetchQuestions();
+            } else {
+                console.error(`Erreur lors de la validation de la question `);
+            }
+        } catch (error) {
+            console.error('Erreur lors de la requête:', error);
+        }
+    };
+
+    const handleRefuser = async (id) => {
+        try {
+            const response = await fetch(`http://localhost:3000/question/supprimer/${id}`, {
+                method: 'DELETE',
+            });
+
+            if (response.ok) {
+                console.log(`Question refusée avec l'ID ${id}`);
+                // Actualiser la liste des questions après la suppression
+                fetchQuestions();
+            } else {
+                console.error(`Erreur lors de la suppression de la question avec l'ID ${id}`);
+            }
+        } catch (error) {
+            console.error('Erreur lors de la requête:', error);
+        }
     };
 
     return (
@@ -50,13 +96,13 @@ const BacklogQuestions = () => {
                             <td className="p-2 border">
                                 <button
                                     className="bg-green text-white p-2 rounded-md mr-2"
-                                    onClick={() => handleValider(question.id)}
+                                    onClick={() => handleValider(question)}
                                 >
                                     Valider
                                 </button>
                                 <button
                                     className="bg-red text-white p-2 rounded-md"
-                                    onClick={() => handleRefuser(question.id)}
+                                    onClick={() => handleRefuser(question._id)}
                                 >
                                     Refuser
                                 </button>

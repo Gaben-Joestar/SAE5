@@ -3,6 +3,8 @@ const router = express.Router();
 const questionController = require('../controllers/questionController');
 
 router.post('/creer', questionController.creerQuestion);
-//router.get('/recuperer/:question', questionController.recupererQuestion);
+router.post('/valider', questionController.validerQuestion);
+router.get('/recuperer/', questionController.recupererQuestions);
+router.delete('/supprimer/:_id', questionController.supprimerQuestion);
 
 module.exports = router;

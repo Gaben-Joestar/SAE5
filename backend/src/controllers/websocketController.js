@@ -57,28 +57,55 @@ function envoyerQuestion() {
   setTimeout(() => {
     clearInterval(interval);
     sendToEveryone('fin');
-  }, 20000);
+  }, 50000);
 }
 
 function getQuestion(index) {
   const questionsJSON = {
     questions: [
       {
-        question: 'que vaut 1+1',
-        bonneReponse: '2',
+        question: 'Quel est le nom de la capitale de la France ?',
+        bonneReponse: 'Paris',
         mauvaisesReponses: {
-          mauvaiseReponse1: '3',
-          mauvaiseReponse2: '4',
-          mauvaiseReponse3: '5',
+          mauvaiseReponse1: 'Londres',
+          mauvaiseReponse2: 'Berlin',
+          mauvaiseReponse3: 'Rome',
         },
       },
       {
-        question: 'test',
-        bonneReponse: 'bonne rep',
+        question: 'Qui a écrit la pièce de théâtre "Roméo et Juliette" ?',
+        bonneReponse: 'Jane Austen',
         mauvaisesReponses: {
-          mauvaiseReponse1: 'mauvaise1',
-          mauvaiseReponse2: 'mauvaise2',
-          mauvaiseReponse3: 'mauvaise3',
+          mauvaiseReponse1: 'Victor Hugo',
+          mauvaiseReponse2: 'Molière',
+          mauvaiseReponse3: 'William Shakespeare',
+        },
+      },
+      {
+        question: 'Quel est le plus grand océan sur Terre ?',
+        bonneReponse: 'Océan Atlantique',
+        mauvaisesReponses: {
+          mauvaiseReponse1: 'Océan Pacifique',
+          mauvaiseReponse2: 'Océan Indien',
+          mauvaiseReponse3: 'Océan Arctique',
+        },
+      },
+      {
+        question: 'Qui a peint la Joconde ?',
+        bonneReponse: 'Leonard de Vinci',
+        mauvaisesReponses: {
+          mauvaiseReponse1: 'Vincent van Gogh',
+          mauvaiseReponse2: 'Pablo Picasso',
+          mauvaiseReponse3: 'Claude Monet',
+        },
+      },
+      {
+        question: 'Quelle est la capitale du Japon ?',
+        bonneReponse: 'Seoul',
+        mauvaisesReponses: {
+          mauvaiseReponse1: 'Pékin',
+          mauvaiseReponse2: 'Tokyo',
+          mauvaiseReponse3: 'Bangkok',
         },
       },
     ],
